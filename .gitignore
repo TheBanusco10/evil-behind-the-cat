@@ -1,5 +1,1 @@
 node_modules/
-dist/
-
-# Do not ignore index.html
-!dist/index.html
