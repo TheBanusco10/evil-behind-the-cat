@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/assets/app.css"],
+  "sourcesContent": ["#game-container {\n    display: flex;\n    flex-direction: column;\n    gap: 1rem;\n\n    #game-screen {\n        border: 1px dashed red;\n        width: 100%;\n        height: 400px;\n    }\n    \n    #game-inventory {\n        border: 1px dashed black;\n        width: 100%;\n        height: 90px;\n    }\n}\n\n.ascii {\n    background: transparent;\n    border: none;\n}\n\n.interact {\n    cursor: pointer;\n}"],
+  "mappings": ";AAAA,CAAC;AACG,WAAS;AACT,kBAAgB;AAChB,OAAK;AAEL,GAAC;AACG,YAAQ,IAAI,OAAO;AACnB,WAAO;AACP,YAAQ;AACZ;AAEA,GAAC;AACG,YAAQ,IAAI,OAAO;AACnB,WAAO;AACP,YAAQ;AACZ;AACJ;AAEA,CAAC;AACG,cAAY;AACZ,UAAQ;AACZ;AAEA,CAAC;AACG,UAAQ;AACZ;",
+  "names": []
+}
