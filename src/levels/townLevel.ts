@@ -1,6 +1,6 @@
 import { formatASCII } from "../services/ASCIIFormatter";
 import { gameInformation, gameScreen } from "../services/GameScreens";
-import { ALL_LEVELS, currentLevel } from "../services/GameState";
+import { ALL_LEVELS, levelSystem } from "../services/GameState";
 
 export const town = {
   element: formatASCII(`~         ~~          __
