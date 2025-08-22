@@ -5,7 +5,7 @@
     envelope: `
   ____  
 ()____)
-\\ ~~~\\
+ \\ ~~~\\
   \\____\\
    ()___)`,
     openedEnvelope: `   ______________________________
@@ -25,7 +25,25 @@
     |                            |.
     |   _________________________|___
     |  /                            /.
-    \\_/dc__________________________/.`
+    \\_/dc__________________________/.`,
+    bookshelf: {
+      normal: `       .--.                   .---.
+   .---|__|           .-.     |~~~|
+.--|===|--|_          |_|     |~~~|--.
+|  |===|  |'\\     .---!~|  .--|   |--|
+|%%|   |  |.'\\    |===| |--|%%|   |  |
+|%%|   |  |\\.'\\   |   | |__|  |   |  |
+|  |   |  | \\  \\  |===| |==|  |   |  |
+|  |   |__|  \\.'\\ |   |_|__|  |~~~|__|
+|  |===|--|   \\.'\\|===|~|--|%%|~~~|--|
+^--^---'--^    \`-'\`---^-^--^--^---'--' hjw`,
+      inventory: `  ,  ,
+ ////|
+|~~| |
+|  | |
+|==|/ 
+'--'  `
+    }
   };
 
   // src/ascii/tables.ts
@@ -98,7 +116,8 @@ ______|                 |_____
   // src/services/GameState.ts
   var ALL_LEVELS = {
     office: "office",
-    town: "town"
+    town: "town",
+    smithHouse: "smith-house"
   };
   var levelSystem = {
     level: ALL_LEVELS.office,
@@ -118,9 +137,9 @@ ______|                 |_____
   // src/levels/officeLevel.ts
   var envelope = {
     isOpened: false,
-    element: `<button class="ascii interact" id="envelope" style="position: absolute; top: 85px;">
+    element: `<div class="ascii interact" id="envelope" style="position: absolute; top: 95px;" title="Envelope">
   ${formatASCII(BOOKS_ASCII.envelope)}
-  </button>`,
+  </div>`,
     openEnvelope: () => {
       document.getElementById("envelope").addEventListener("click", () => {
         if (envelope.isOpened) {
@@ -139,7 +158,7 @@ ______|                 |_____
             Sincerely, <br />
             John Doe
           </p>
-        </div>  
+        </div>
       `);
         gameInformation.addElement(`
         <button id="close-envelope">Close envelope</button>
@@ -173,12 +192,11 @@ ______|                 |_____
       </div>  
     `);
       envelope.openEnvelope();
-      envelope.closeEnvelope();
     }
   };
 
-  // src/levels/townLevel.ts
-  var town = {
+  // src/levels/smithHouseLevel.ts
+  var smithHouse = {
     element: formatASCII(`~         ~~          __
        _T      .,,.    ~--~ ^^
  ^^   //                     ~
@@ -191,7 +209,43 @@ __/_  /    ______/ ''   /'_,__
 '  |[]|,.--'' '',   ''-,.    |
   ..    ..-''    ;       ''. '`),
     addInstance: () => {
+      gameScreen.addElement(`Smith's house`);
+    }
+  };
+
+  // src/ascii/houses.ts
+  var HOUSES_ASCII = {
+    smithHouse: {
+      normal: `       _
+     _|=|__________
+    /              \\
+   /                \\
+  /__________________\\
+   ||  || /--\\ ||  ||
+   ||[]|| | .| ||[]||
+ ()||__||_|__|_||__||()
+( )|-|-|-|====|-|-|-|( ) 
+^^^^^^^^^^====^^^^^^^^^^^`
+    }
+  };
+
+  // src/levels/townLevel.ts
+  var town = {
+    element: formatASCII(`
+    <div id="smith-house" class="ascii interact" title="Smith's house">
+      ${formatASCII(HOUSES_ASCII.smithHouse.normal)}
+    </div>  
+  `),
+    goToSmithHouse: () => {
+      document.getElementById("smith-house").addEventListener("click", () => {
+        gameScreen.cleanGameScreen();
+        gameInformation.cleanInformation();
+        levelSystem.changeLevel(ALL_LEVELS.smithHouse);
+      });
+    },
+    addInstance: () => {
       gameScreen.addElement(town.element);
+      town.goToSmithHouse();
     }
   };
 
@@ -208,6 +262,9 @@ __/_  /    ______/ ''   /'_,__
           break;
         case ALL_LEVELS.town:
           town.addInstance();
+          break;
+        case ALL_LEVELS.smithHouse:
+          smithHouse.addInstance();
           break;
         default:
           break;

@@ -6,9 +6,9 @@ import { ALL_LEVELS, levelSystem } from "../services/GameState";
 
 export const envelope = {
   isOpened: false,
-  element: `<button class="ascii interact" id="envelope" style="position: absolute; top: 85px;">
+  element: `<div class="ascii interact" id="envelope" style="position: absolute; top: 95px;" title="Envelope">
   ${formatASCII(BOOKS_ASCII.envelope)}
-  </button>`,
+  </div>`,
   openEnvelope: () => {
     document.getElementById("envelope")!.addEventListener("click", () => {
       if (envelope.isOpened) {
@@ -29,7 +29,7 @@ export const envelope = {
             Sincerely, <br />
             John Doe
           </p>
-        </div>  
+        </div>
       `);
 
       gameInformation.addElement(`
@@ -65,6 +65,5 @@ export const envelope = {
       </div>  
     `);
     envelope.openEnvelope();
-    envelope.closeEnvelope();
   },
 };

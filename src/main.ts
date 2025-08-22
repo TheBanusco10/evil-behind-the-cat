@@ -1,5 +1,6 @@
 import "./assets/app.css";
 import * as officeLevel from "./levels/officeLevel";
+import { smithHouse } from "./levels/smithHouseLevel";
 import { town } from "./levels/townLevel";
 import { levelSystem, ALL_LEVELS } from "./services/GameState";
 
@@ -16,6 +17,9 @@ document.addEventListener(
         break;
       case ALL_LEVELS.town:
         town.addInstance();
+        break;
+      case ALL_LEVELS.smithHouse:
+        smithHouse.addInstance();
         break;
       default:
         break;

@@ -3,6 +3,7 @@ import { gameLocation, gameScreen } from "./GameScreens";
 export const ALL_LEVELS = {
   office: "office",
   town: "town",
+  smithHouse: "smith-house",
 };
 
 export const levelSystem = {
